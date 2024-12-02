@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\Visitor">
+      <UniqueIdentifier>{156f85ea-91ce-410d-a481-0c2ab295558f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Visitor">
+      <UniqueIdentifier>{75d9a4c4-760d-4cec-b8fe-6b7568ee87c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Acceptor">
+      <UniqueIdentifier>{18d0b244-5d89-4e4e-ad87-7dfc602d5f52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Acceptor">
+      <UniqueIdentifier>{59f4e2a0-9c7b-4012-aff4-159c706a243c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ICollisionEventReceiver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CollidableOrientedBox.h">
+      <Filter>헤더 파일\Acceptor</Filter>
+    </ClInclude>
+    <ClInclude Include="CollidableSphere.h">
+      <Filter>헤더 파일\Acceptor</Filter>
+    </ClInclude>
+    <ClInclude Include="CollidableFrustum.h">
+      <Filter>헤더 파일\Acceptor</Filter>
+    </ClInclude>
+    <ClInclude Include="ContainVisitor.h">
+      <Filter>헤더 파일\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="IntersectVisitor.h">
+      <Filter>헤더 파일\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionVisitor.h">
+      <Filter>헤더 파일\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="ICollisionAcceptor.h">
+      <Filter>헤더 파일\Acceptor</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ICollisionEventReceiver.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CollidableOrientedBox.cpp">
+      <Filter>소스 파일\Acceptor</Filter>
+    </ClCompile>
+    <ClCompile Include="CollidableSphere.cpp">
+      <Filter>소스 파일\Acceptor</Filter>
+    </ClCompile>
+    <ClCompile Include="CollidableFrustum.cpp">
+      <Filter>소스 파일\Acceptor</Filter>
+    </ClCompile>
+    <ClCompile Include="ContainVisitor.cpp">
+      <Filter>소스 파일\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="IntersectVisitor.cpp">
+      <Filter>소스 파일\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionVisitor.cpp">
+      <Filter>소스 파일\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="ICollisionAcceptor.cpp">
+      <Filter>소스 파일\Acceptor</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

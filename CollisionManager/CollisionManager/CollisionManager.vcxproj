@@ -124,6 +124,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)Archive\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -132,6 +133,8 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(ProjectDir)Archive\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -161,7 +164,7 @@
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="ICollisionAcceptor.h" />
-    <ClInclude Include="ICollisionEventReceiver.h" />
+    <ClInclude Include="ACollisionEventReceiver.h" />
     <ClInclude Include="CollisionVisitor.h" />
     <ClInclude Include="IntersectVisitor.h" />
     <ClInclude Include="pch.h" />
@@ -173,7 +176,7 @@
     <ClCompile Include="ContainVisitor.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="ICollisionAcceptor.cpp" />
-    <ClCompile Include="ICollisionEventReceiver.cpp" />
+    <ClCompile Include="ACollisionEventReceiver.cpp" />
     <ClCompile Include="CollisionVisitor.cpp" />
     <ClCompile Include="IntersectVisitor.cpp" />
     <ClCompile Include="pch.cpp">

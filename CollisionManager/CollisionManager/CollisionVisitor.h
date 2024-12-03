@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "CollidableSphere.h"
 #include "CollidableOrientedBox.h"
 #include "CollidableFrustum.h"
@@ -18,11 +19,6 @@ public:
 
 protected:
 	std::shared_ptr<ICollisionAcceptor> m_collisionAcceptor;
-
-public:
-	virtual bool Visit(CollidableSphere* collidableSphere) const = 0;
-	virtual bool Visit(CollidableOrientedBox* collidableSphere) const = 0;
-	virtual bool Visit(CollidableFrustum* collidableSphere) const = 0;
 };
 
 template<typename T>
@@ -33,15 +29,10 @@ public:
 
 public:
 	T* m_specifiedCollisionAccpetor;
-
-public:
-	virtual bool Visit(CollidableSphere* collidableSphere) const = 0;
-	virtual bool Visit(CollidableOrientedBox* collidableSphere) const = 0;
-	virtual bool Visit(CollidableFrustum* collidableSphere) const = 0;
 };
 
 template<typename T>
-inline ACollisionSpecifiedVisitor<T>::ACollisionSpecifiedVisitor(T* specifiedCollisionAcceptor)
+ACollisionSpecifiedVisitor<T>::ACollisionSpecifiedVisitor(T* specifiedCollisionAcceptor)
 	: m_specifiedCollisionAccpetor(specifiedCollisionAcceptor)
 {
 }

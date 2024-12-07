@@ -7,32 +7,32 @@
 class ICollisionVisitor
 {
 public:
-	virtual bool Visit(CollidableSphere* collidableSphere) const = 0;
-	virtual bool Visit(CollidableOrientedBox* collidableSphere) const = 0;
-	virtual bool Visit(CollidableFrustum* collidableSphere) const = 0;
+	virtual bool Visit(const CollidableSphere* const collidableSphere) const = 0;
+	virtual bool Visit(const CollidableOrientedBox* const collidableSphere) const = 0;
+	virtual bool Visit(const CollidableFrustum* const collidableSphere) const = 0;
 };
 
 class ACollisionVisitor : public ICollisionVisitor
 {
 public:
-	ACollisionVisitor(const std::shared_ptr<ICollisionAcceptor>& collisionAcceptor);
+	ACollisionVisitor(const std::shared_ptr<ACollisionAcceptor>& collisionAcceptor);
 
 protected:
-	std::shared_ptr<ICollisionAcceptor> m_collisionAcceptor;
+	std::shared_ptr<ACollisionAcceptor> m_collisionAcceptor;
 };
 
 template<typename T>
 class ACollisionSpecifiedVisitor : public ICollisionVisitor
 {
 public:
-	ACollisionSpecifiedVisitor(T* specifiedCollisionAcceptor);
+	ACollisionSpecifiedVisitor(const T* const specifiedCollisionAcceptor);
 
 public:
-	T* m_specifiedCollisionAccpetor;
+	const T* const  m_specifiedCollisionAccpetor;
 };
 
 template<typename T>
-ACollisionSpecifiedVisitor<T>::ACollisionSpecifiedVisitor(T* specifiedCollisionAcceptor)
+ACollisionSpecifiedVisitor<T>::ACollisionSpecifiedVisitor(const T* const specifiedCollisionAcceptor)
 	: m_specifiedCollisionAccpetor(specifiedCollisionAcceptor)
 {
 }

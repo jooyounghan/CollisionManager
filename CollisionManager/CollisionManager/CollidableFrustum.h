@@ -1,11 +1,16 @@
 #pragma once
-#include "ICollisionAcceptor.h"
+#include "ACollisionAcceptor.h"
 
-class CollidableFrustum : public ICollisionAcceptor, public DirectX::BoundingFrustum
+class CollidableFrustum : public ACollisionAcceptor, public DirectX::BoundingFrustum
 {
 public:
 	virtual bool Accept(
 		ICollisionVisitor& collisionVisitor
-	) override;
+	) const override;
+
+public:
+	virtual bool IsInVolume(const DirectX::BoundingBox& volume) const override;
+	virtual bool IsIntersectWithVolume(const DirectX::BoundingBox& volume) const override;
+	virtual bool IsDisjointWithVolume(const DirectX::BoundingBox& volume) const override;
 };
 

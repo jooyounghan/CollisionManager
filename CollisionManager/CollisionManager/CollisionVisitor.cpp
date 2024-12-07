@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "CollisionVisitor.h"
 
-ACollisionVisitor::ACollisionVisitor(const std::shared_ptr<ICollisionAcceptor>& collisionAcceptor)
+using namespace std;
+
+ACollisionVisitor::ACollisionVisitor(const shared_ptr<ACollisionAcceptor>& collisionAcceptor)
 	: m_collisionAcceptor(collisionAcceptor)
 {
 }

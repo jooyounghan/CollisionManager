@@ -163,10 +163,12 @@
     <ClInclude Include="ContainVisitor.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="ICollisionAcceptor.h" />
+    <ClInclude Include="ACollisionAcceptor.h" />
     <ClInclude Include="ACollisionEventReceiver.h" />
     <ClInclude Include="CollisionVisitor.h" />
     <ClInclude Include="IntersectVisitor.h" />
+    <ClInclude Include="OctreeChecker.h" />
+    <ClInclude Include="OctreeNode.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -175,10 +177,12 @@
     <ClCompile Include="CollidableSphere.cpp" />
     <ClCompile Include="ContainVisitor.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
-    <ClCompile Include="ICollisionAcceptor.cpp" />
+    <ClCompile Include="ACollisionAcceptor.cpp" />
     <ClCompile Include="ACollisionEventReceiver.cpp" />
     <ClCompile Include="CollisionVisitor.cpp" />
     <ClCompile Include="IntersectVisitor.cpp" />
+    <ClCompile Include="OctreeChecker.cpp" />
+    <ClCompile Include="OctreeNode.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

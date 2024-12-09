@@ -1,5 +1,4 @@
 #pragma once
-#include <memory>
 #include "CollidableSphere.h"
 #include "CollidableOrientedBox.h"
 #include "CollidableFrustum.h"
@@ -15,10 +14,10 @@ public:
 class ACollisionVisitor : public ICollisionVisitor
 {
 public:
-	ACollisionVisitor(const std::shared_ptr<ACollisionAcceptor>& collisionAcceptor);
+	ACollisionVisitor(ACollisionAcceptor* collisionAcceptor);
 
 protected:
-	std::shared_ptr<ACollisionAcceptor> m_collisionAcceptor;
+	ACollisionAcceptor* m_collisionAcceptor;
 };
 
 template<typename T>

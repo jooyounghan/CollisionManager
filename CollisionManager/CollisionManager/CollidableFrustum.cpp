@@ -9,17 +9,34 @@ bool CollidableFrustum::Accept(ICollisionVisitor& collisionVisitor) const
 	return collisionVisitor.Visit(this);
 }
 
-bool CollidableFrustum::IsInVolume(const BoundingBox& volume) const
+DirectX::BoundingBox CollidableFrustum::GetBoundingBox(const float& margin) const
 {
-	return volume.Contains(*this) == ContainmentType::CONTAINS;
-}
+    XMFLOAT3 corners[8];
+    GetCorners(corners);
 
-bool CollidableFrustum::IsIntersectWithVolume(const BoundingBox& volume) const
-{
-	return volume.Contains(*this) == ContainmentType::INTERSECTS;
-}
+    XMFLOAT3 minCorner = corners[0];
+    XMFLOAT3 maxCorner = corners[0];
 
-bool CollidableFrustum::IsDisjointWithVolume(const BoundingBox& volume) const
-{
-	return volume.Contains(*this) == ContainmentType::DISJOINT;
+    for (int i = 1; i < 8; ++i)
+    {
+        minCorner.x = std::min(minCorner.x, corners[i].x);
+        minCorner.y = std::min(minCorner.y, corners[i].y);
+        minCorner.z = std::min(minCorner.z, corners[i].z);
+
+        maxCorner.x = std::max(maxCorner.x, corners[i].x);
+        maxCorner.y = std::max(maxCorner.y, corners[i].y);
+        maxCorner.z = std::max(maxCorner.z, corners[i].z);
+    }
+
+    minCorner.x -= margin;
+    minCorner.y -= margin;
+    minCorner.z -= margin;
+
+    maxCorner.x += margin;
+    maxCorner.y += margin;
+    maxCorner.z += margin;
+
+    BoundingBox result;
+    BoundingBox::CreateFromPoints(result, XMLoadFloat3(&minCorner), XMLoadFloat3(&maxCorner));
+    return result;
 }

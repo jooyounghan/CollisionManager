@@ -25,11 +25,11 @@
     <Filter Include="소스 파일\Acceptor">
       <UniqueIdentifier>{59f4e2a0-9c7b-4012-aff4-159c706a243c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일\KdTree">
-      <UniqueIdentifier>{29c64007-9445-4e55-b9ae-d250343f26c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Octree">
+    <Filter Include="소스 파일\BVH">
       <UniqueIdentifier>{2786fb71-ea5c-4e63-aad6-ac04c6fd2ef0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\BVH">
+      <UniqueIdentifier>{29c64007-9445-4e55-b9ae-d250343f26c9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -66,11 +66,11 @@
     <ClInclude Include="ACollisionAcceptor.h">
       <Filter>헤더 파일\Acceptor</Filter>
     </ClInclude>
-    <ClInclude Include="OctreeNode.h">
-      <Filter>헤더 파일\KdTree</Filter>
+    <ClInclude Include="BoundingVolumeNode.h">
+      <Filter>헤더 파일\BVH</Filter>
     </ClInclude>
-    <ClInclude Include="OctreeChecker.h">
-      <Filter>헤더 파일\KdTree</Filter>
+    <ClInclude Include="BoundingVolumeHierachy.h">
+      <Filter>헤더 파일\BVH</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -104,11 +104,11 @@
     <ClCompile Include="ACollisionAcceptor.cpp">
       <Filter>소스 파일\Acceptor</Filter>
     </ClCompile>
-    <ClCompile Include="OctreeNode.cpp">
-      <Filter>소스 파일\Octree</Filter>
+    <ClCompile Include="BoundingVolumeNode.cpp">
+      <Filter>소스 파일\BVH</Filter>
     </ClCompile>
-    <ClCompile Include="OctreeChecker.cpp">
-      <Filter>소스 파일\Octree</Filter>
+    <ClCompile Include="BoundingVolumeHierachy.cpp">
+      <Filter>소스 파일\BVH</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@
 #include "CollidableSphere.h"
 #include "CollidableOrientedBox.h"
 
+#include <memory>
 #include <thread>
 #include <iostream>
 #include <format>
@@ -21,7 +22,7 @@ public:
 	std::shared_ptr<CollidableSphere> sphere = std::make_shared<CollidableSphere>();
 
 public:
-	virtual void OnCollide(const std::shared_ptr<ACollisionEventReceiver>&) override;
+	virtual void OnCollide(ACollisionEventReceiver*) override;
 };
 
 class Bat : public ACollisionEventReceiver
@@ -36,7 +37,7 @@ public:
 	std::shared_ptr<CollidableOrientedBox> box = std::make_shared<CollidableOrientedBox>();
 
 public:
-	virtual void OnCollide(const std::shared_ptr<ACollisionEventReceiver>&) override;
+	virtual void OnCollide(ACollisionEventReceiver*) override;
 };
 
 int main()
@@ -44,48 +45,37 @@ int main()
 	int second = 0;
 	CollisionManager test;
 
+	Bat bat = Bat();
+	std::vector<BaseBall> baseBalls;
 
-	std::shared_ptr<BaseBall> baseBall = ACollisionEventReceiver::Create<BaseBall>();	
-	std::shared_ptr<Bat> bat = ACollisionEventReceiver::Create<Bat>();
+	bat.box->Center = DirectX::XMFLOAT3(5.f, 0.f, 0.f);
+	bat.box->Extents = DirectX::XMFLOAT3(1.f, 1.f, 1.f);
 
-	baseBall->sphere->Center = DirectX::XMFLOAT3(-5.f, 0.f, 0.f);
-	baseBall->sphere->Radius = 1.f;
+	DirectX::BoundingBox Box = DirectX::BoundingBox(DirectX::XMFLOAT3(0.f, 0.f, 0.f), DirectX::XMFLOAT3(100.f, 100.f, 100.f));
 
-	bat->box->Center = DirectX::XMFLOAT3(5.f, 0.f, 0.f);
-	bat->box->Extents = DirectX::XMFLOAT3(1.f, 1.f, 1.f);
-
-	test.RegisterCollidableForChannel("BaseBall", baseBall->sphere, baseBall);
-	test.RegisterCollidableForChannel("BaseBall", bat->box, bat);
-
-	test.RegisterCheckerCollidableForRelation("BaseBall", baseBall->sphere, baseBall);
-	test.RegisterTargetCollidableForRelation("BaseBall", bat->box, bat);
 
 	while (true)
 	{
-		std::cout << std::format("{} second...", std::to_string(second / 10.f)) << std::endl;
-		test.CheckAllChannelCollision();
-		test.CheckAllRelationCollision();
 
-		baseBall->sphere->Center.x += 2.5f;
-		bat->box->Center.x -= 2.5f;
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 		second++;
 	}
 }
 
 
-void BaseBall::OnCollide(const std::shared_ptr<ACollisionEventReceiver>& arg)
+void BaseBall::OnCollide(ACollisionEventReceiver* arg)
 {
-	std::shared_ptr<Bat> bat = dynamic_pointer_cast<Bat>(arg);
+	Bat* bat = dynamic_cast<Bat*>(arg);
 	if (bat != nullptr)
 	{
 		std::cout << "BaseBall :: Home Run!!" << std::endl;
 	}
 }
 
-void Bat::OnCollide(const std::shared_ptr<ACollisionEventReceiver>& arg)
+void Bat::OnCollide(ACollisionEventReceiver* arg)
 {
-	std::shared_ptr<BaseBall> baseBall = dynamic_pointer_cast<BaseBall>(arg);
+	
+	BaseBall* baseBall = dynamic_cast<BaseBall*>(arg);
 	if (baseBall != nullptr)
 	{
 		std::cout << "Bat :: PIEW!!" << std::endl;

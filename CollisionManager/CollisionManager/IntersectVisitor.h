@@ -4,7 +4,7 @@
 class IntersectVisitor : public ACollisionVisitor
 {
 public:
-	IntersectVisitor(const std::shared_ptr<ACollisionAcceptor>& collisionAcceptor);
+	IntersectVisitor(ACollisionAcceptor* collisionAcceptor);
 
 public:
 	virtual bool Visit(const CollidableSphere* const collidableSphere) const override;

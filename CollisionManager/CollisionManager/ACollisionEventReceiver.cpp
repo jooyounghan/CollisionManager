@@ -5,5 +5,10 @@ using namespace std;
 
 ACollisionEventReceiver::~ACollisionEventReceiver()
 {
-	OnDispose(shared_from_this());
+	OnDispose(this);
+}
+
+void ACollisionEventReceiver::SetDisposeHandler(const function<void(ACollisionEventReceiver*)>& onDispose)
+{
+	OnDispose = onDispose;
 }

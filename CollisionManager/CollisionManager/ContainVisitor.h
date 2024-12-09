@@ -4,7 +4,7 @@
 class ContainVisitor : public ACollisionVisitor
 {
 public:
-	ContainVisitor(const std::shared_ptr<ACollisionAcceptor>& collisionAcceptor);
+	ContainVisitor(ACollisionAcceptor* collisionAcceptor);
 
 public:
 	virtual bool Visit(const CollidableSphere* const collidableSphere) const override;

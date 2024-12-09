@@ -157,6 +157,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BoundingVolumeHierachy.h" />
+    <ClInclude Include="BoundingVolumeNode.h" />
     <ClInclude Include="CollidableFrustum.h" />
     <ClInclude Include="CollidableOrientedBox.h" />
     <ClInclude Include="CollidableSphere.h" />
@@ -167,11 +169,11 @@
     <ClInclude Include="ACollisionEventReceiver.h" />
     <ClInclude Include="CollisionVisitor.h" />
     <ClInclude Include="IntersectVisitor.h" />
-    <ClInclude Include="OctreeChecker.h" />
-    <ClInclude Include="OctreeNode.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BoundingVolumeHierachy.cpp" />
+    <ClCompile Include="BoundingVolumeNode.cpp" />
     <ClCompile Include="CollidableFrustum.cpp" />
     <ClCompile Include="CollidableOrientedBox.cpp" />
     <ClCompile Include="CollidableSphere.cpp" />
@@ -181,8 +183,6 @@
     <ClCompile Include="ACollisionEventReceiver.cpp" />
     <ClCompile Include="CollisionVisitor.cpp" />
     <ClCompile Include="IntersectVisitor.cpp" />
-    <ClCompile Include="OctreeChecker.cpp" />
-    <ClCompile Include="OctreeNode.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

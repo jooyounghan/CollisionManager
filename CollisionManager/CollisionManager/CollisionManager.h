@@ -1,16 +1,14 @@
 #pragma once
-#include <memory>
 #include <string>
 #include <unordered_map>
 
 #include "ACollisionAcceptor.h"
 #include "ACollisionEventReceiver.h"
-#include "OctreeChecker.h"
 
 class CollisionManager
 {
 private:
-	std::unordered_map<std::string, std::vector<std::shared_ptr<ACollisionAcceptor>>> m_channelNamesToCollidables;
+	std::unordered_map<std::string, std::vector<ACollisionAcceptor*>> m_channelNamesToCollidables;
 
 public:
 	void CheckAllChannelCollision();
@@ -19,12 +17,12 @@ public:
 public:
 	void RegisterCollidableForChannel(
 		const std::string& channelName,
-		const std::shared_ptr<ACollisionAcceptor>& collidable,
-		const std::shared_ptr<ACollisionEventReceiver>& receiver
+		ACollisionAcceptor* const collidable,
+		ACollisionEventReceiver* const receiver
 	);
 
 private:
-	std::unordered_map<std::string, std::pair<std::vector<std::shared_ptr<ACollisionAcceptor>>, std::vector<std::shared_ptr<ACollisionAcceptor>>>> m_relationNamesToGroups;
+	std::unordered_map<std::string, std::pair<std::vector<ACollisionAcceptor*>, std::vector<ACollisionAcceptor*>>> m_relationNamesToGroups;
 
 public:
 	void CheckAllRelationCollision();
@@ -33,51 +31,29 @@ public:
 public:
 	void RegisterCheckerCollidableForRelation(
 		const std::string& channelName,
-		const std::shared_ptr<ACollisionAcceptor>& collisionChecker,
-		const std::shared_ptr<ACollisionEventReceiver>& checkerReceiver
+		ACollisionAcceptor* const collisionChecker,
+		ACollisionEventReceiver* const checkerReceiver
 	);
 
 public:
 	void RegisterTargetCollidableForRelation(
 		const std::string& channelName,
-		const std::shared_ptr<ACollisionAcceptor>& collisionTarget,
-		const std::shared_ptr<ACollisionEventReceiver>& targetReceiver
+		ACollisionAcceptor* const collisionTarget,
+		ACollisionEventReceiver* const targetReceiver
 	);
 
 private:
-	std::unordered_map<std::string, OctreeChecker> m_volumeNameToOctree;
+	std::unordered_map<ACollisionAcceptor*, ACollisionEventReceiver*> m_collidablesToRecievers;
+	std::unordered_map<ACollisionEventReceiver*, ACollisionAcceptor*> m_recieversToCollidables;
+
 
 public:
-	void RegisterOctreeChecker(
-		const std::string& volumeName, 
-		const DirectX::BoundingBox& collisionVolume, 
-		const size_t& maxCollidablesCountPerNode
-	);
-
-public:
-	void RegisterCollidableToOctree(
-		const std::string& volumeName,
-		const std::shared_ptr<ACollisionAcceptor>& collidable,
-		const std::shared_ptr<ACollisionEventReceiver>& receiver
-	);
-
-public:
-	void CheckOctrees(const std::shared_ptr<ACollisionAcceptor>& collidable);
-	void CheckOctree(const std::string& volumeName, const std::shared_ptr<ACollisionAcceptor>& collidable);
+	void DisposeEventReceiver(ACollisionEventReceiver* const receiver );
 
 private:
-	std::unordered_map<std::shared_ptr<ACollisionAcceptor>, std::shared_ptr<ACollisionEventReceiver>> m_collidablesToRecievers;
-	std::unordered_map<std::shared_ptr<ACollisionEventReceiver>, std::shared_ptr<ACollisionAcceptor>> m_recieversToCollidables;
-
-
-public:
-	void DisposeEventReceiver(const std::shared_ptr<ACollisionEventReceiver>& receiver);
+	void CheckChannelCollisionHelper(const std::vector<ACollisionAcceptor*>& collidables);
+	void CheckRelationCollisionHelper(const std::pair<std::vector<ACollisionAcceptor*>, std::vector<ACollisionAcceptor*>>& groups);
 
 private:
-	void CheckChannelCollisionHelper(const std::vector<std::shared_ptr<ACollisionAcceptor>>& collidables);
-	void CheckRelationCollisionHelper(const std::pair< std::vector<std::shared_ptr<ACollisionAcceptor>>, std::vector<std::shared_ptr<ACollisionAcceptor>>>& groups);
-	void CheckOctreeHelper(const OctreeChecker& octreeChecker, const std::shared_ptr<ACollisionAcceptor>& collidable);
-
-private:
-	void RemoveHelper(std::vector<std::shared_ptr<ACollisionAcceptor>>& container, const std::shared_ptr<ACollisionAcceptor>& target);
+	void RemoveHelper(std::vector<ACollisionAcceptor*>& container, const ACollisionAcceptor* const target);
 };

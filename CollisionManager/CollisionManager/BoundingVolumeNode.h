@@ -1,5 +1,5 @@
 #pragma once
-#include "DirectXMath/DirectXCollision.h"
+#include <DirectXCollision.h>
 #include "ACollisionAcceptor.h"
 #include <vector>
 
